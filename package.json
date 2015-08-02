@@ -17,6 +17,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "mongoose": "^4.1.0",
     "reload": "^0.3.0"
   }
 }
