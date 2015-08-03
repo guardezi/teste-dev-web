@@ -1,19 +1,18 @@
 //breeds
 var express = require('express');
 var router = express.Router();
-var Breed  = require('../models/breed');
+// var Breed  = require('../models/breed');
+var mongoDbConnection = require('./connection');
 
 /* GET list all breeds on system. */
 router.get('/', function(req, res, next) {
-  console.log('outro teste');
-  var breed = new Breed();
-  res.send(breed.list());
+  mongoDbConnection(function(databaseConnection) {
+    databaseConnection.collection('breed', function(error, collection) {
+      collection.find().toArray(function(error, results) {
+        res.send(results);
+      });
+    });
+  });
 });
-
-/*GET list of all breeds */
-// router.get('/', function(req, res, next) {
-//   console.log(req.url);
-//   res.send('[]');
-// });
 
 module.exports = router;
