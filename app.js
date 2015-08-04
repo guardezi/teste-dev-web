@@ -9,6 +9,7 @@ var routes = require('./app/routes/index');
 var users = require('./app/routes/users');
 var dogs = require('./app/routes/dogs');
 var breeds = require('./app/routes/breeds');
+// var site = require('./CharlieEDogs');
 
 var app = express();
 
@@ -24,10 +25,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+// app.use('/', site);
 app.use('/users', users);
 app.use('/dogs',dogs);
 app.use('/breeds',breeds);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
