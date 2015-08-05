@@ -7,7 +7,13 @@ router.get('/', function(req, res, next) {
   res.send('respondendo com um recurso');
 });
 
-router.get('/teste', function(req, res, next) {
+router.post('/login', function(req, res, next) {
+    console.log('login: ', req.data);
+    var request = req.data;
+    user = request.user;
+
+
+
   console.log(req.url);
   res.send('[]');
 });

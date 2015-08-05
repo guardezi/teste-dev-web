@@ -1,15 +1,31 @@
+//dogs
 var express = require('express');
-var router = express.Router();
+var dogs = express.Router();
+var mongoDbConnection = require('./connection');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  console.log('outro teste');
-  res.send('[{"raca":"labrador", "nome":"frederico"}]');
+/* GET list all dogs */
+dogs.get('/', function(req, res, next) {
+  mongoDbConnection(function(databaseConnection) {
+    databaseConnection.collection('dog', function(error, collection) {
+      collection.find().toArray(function(error, results) {
+        res.send(results);
+    });
+  });
+});
 });
 
-router.get('/teste', function(req, res, next) {
-  console.log(req.url);
-  res.send('[]');
+/* POST insert new dog */
+dogs.post('/', function(req, res, next) {
+  mongoDbConnection(function(databaseConnection) {
+    databaseConnection.collection('dog', function(error, collection) {
+      console.log('req', req);
+      res.send(req.body);
+      collection.insert(req.body);
+  });
+});
 });
 
-module.exports = router;
+/* GET specific breed */
+
+
+module.exports = dogs;
