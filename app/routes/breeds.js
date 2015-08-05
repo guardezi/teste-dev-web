@@ -1,10 +1,10 @@
 //breeds
 var express = require('express');
-var router = express.Router();
+var breed = express.Router();
 var mongoDbConnection = require('./connection');
 
 /* GET list all breeds */
-router.get('/', function(req, res, next) {
+breed.get('/', function(req, res, next) {
   mongoDbConnection(function(databaseConnection) {
     databaseConnection.collection('breed', function(error, collection) {
       collection.find().toArray(function(error, results) {
@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* POST insert new breed */
-router.post('/', function(req, res, next) {
+breed.post('/', function(req, res, next) {
   mongoDbConnection(function(databaseConnection) {
     databaseConnection.collection('breed', function(error, collection) {
       console.log('req', req);
@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
 });
 
 /* GET specifi breed */
-router.get('/:name?', function(req, res, next) {
+breed.get('/:name?', function(req, res, next) {
   var breed = req.params.name;
   mongoDbConnection(function(databaseConnection) {
     databaseConnection.collection('breed', function(error, collection) {
@@ -39,4 +39,4 @@ router.get('/:name?', function(req, res, next) {
 });
 
 
-module.exports = router;
+module.exports = breed;
