@@ -17,7 +17,7 @@ module.exports = function(callback) {
         return;
     }
 
-    var uri = 'mongodb://ornitorrinko:nodejs@ds031903.mongolab.com:31903/heroku_sqgtk2p9';
+    var uri = 'mongodb://192.168.100.3:27017/charliedog';
     mongodb.MongoClient.connect(uri, function(err, db) {
 
         if(err) throw err;
