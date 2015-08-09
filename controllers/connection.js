@@ -4,7 +4,7 @@
 var mongodb = require('mongodb');
 var connectionInstance;
 
-var uri = 'mongodb://heroku_q2370wr0:f94q2v5e8mvv676fl22nd1lvqq@ds031223.mongolab.com:31223/heroku_q2370wr0';
+var uri = 'mongodb://guardezi:nodejs@ds031213.mongolab.com:31213/heroku_c030497n';
 
 
 module.exports = function(callback) {
