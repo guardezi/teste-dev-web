@@ -17,9 +17,9 @@ module.exports = function(callback) {
         return;
     }
 
-    var uri = 'mongodb://192.168.100.3:27017/charliedog';
+    //var uri = 'mongodb://192.168.100.3:27017/charliedog'; //local
+    var uri = 'mongodb://guardezi:nodejs@ds031213.mongolab.com:31213/heroku_c030497n';
     mongodb.MongoClient.connect(uri, function(err, db) {
-
         if(err) throw err;
         db.open(function(error,databaseConnection){
            if(error) throw new Error(error);
