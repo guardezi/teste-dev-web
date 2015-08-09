@@ -3,10 +3,15 @@
  */
 
 var mongoDbConnection = require('./connection');
-
+var cloudinary = require('cloudinary');
 
 var fs = require('fs');
 
+cloudinary.config({
+    cloud_name: 'hwr0nwo83',
+    api_key: '129885417761768',
+    api_secret: 'xb909yce4NHq9Ix3s5dawISIDYY'
+});
 
 var dogs = new Object();
 
@@ -37,15 +42,21 @@ dogs.getByBreed = function(name, callback){
     });
 };
 
+
+
 dogs.save = function(dog,callback){
     var imgPath = '../public/images/dog.jpg';
-    dog.img = fs.readFileSync(imgPath);
-    mongoDbConnection(function(databaseConnection) {
-        databaseConnection.collection('dog', function (error, collection) {
-            collection.insert(dog);
-            if (error)throw  new error(error);
-            callback(dog);
-            return;
+    cloudinary.uploader.upload(imgPath, function(result) {
+
+        dog.img_url = result.url;
+
+        mongoDbConnection(function(databaseConnection) {
+            databaseConnection.collection('dog', function (error, collection) {
+                collection.insert(dog);
+                if (error)throw  new error(error);
+                callback(dog);
+                return;
+            });
         });
     });
 };
