@@ -16,6 +16,7 @@
     "serve-favicon": "~2.3.0",
     "mongo": "^0.1.0",
     "mongodb": "~2.0.33",
+    "mongodb-uri":"",
     "morgan": "~1.6.1",
     "cloudinary": ""
   },

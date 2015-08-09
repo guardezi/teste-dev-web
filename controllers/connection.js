@@ -1,14 +1,11 @@
 /**
  * Created by guardezi on 07/08/15.
  */
-//connection
-//var Db = require('mongodb').Db;
-//var Connection = require('mongodb').Connection;
-//var Server = require('mongodb').Server;
-//the MongoDB connection
+var mongodb = require('mongodb');
 var connectionInstance;
 
-var mongodb = require('mongodb');
+var uri = 'mongodb://heroku_q2370wr0:f94q2v5e8mvv676fl22nd1lvqq@ds031223.mongolab.com:31223/heroku_q2370wr0';
+
 
 module.exports = function(callback) {
     //if already we have a connection, don't connect to database again
@@ -16,22 +13,9 @@ module.exports = function(callback) {
         callback(connectionInstance);
         return;
     }
-
-    //var uri = 'mongodb://192.168.100.3:27017/charliedog'; //local
-    var uri = 'mongodb://guardezi:nodejs@ds031213.mongolab.com:31213/heroku_c030497n';
     mongodb.MongoClient.connect(uri, function(err, db) {
         if(err) throw err;
-        db.open(function(error,databaseConnection){
-           if(error) throw new Error(error);
-           connectionInstance = databaseConnection;
-            callback(databaseConnection);
-        });
+        connectionInstance = db;
+        callback(connectionInstance);
     });
-
-    //var db = new Db('heroku_sqgtk2p9', new Server("ornitorrinko:nodejs@ds031903.mongolab.com", "31903", { auto_reconnect: true }));
-    //db.open(function(error, databaseConnection) {
-    //    if (error) throw new Error(error);
-    //    connectionInstance = databaseConnection;
-    //    callback(databaseConnection);
-    //});
 };
