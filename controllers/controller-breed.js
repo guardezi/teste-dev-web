@@ -19,6 +19,18 @@ breed.getAll = function (callback) {
     });
 };
 
+breed.saveBreed = function(breed, callback){
+    mongoDbConnection(function(databaseConnection) {
+        databaseConnection.collection('breed', function(error, collection) {
+            collection.insert(breed,function(err,records){
+                if(err) throw err;
+                callback(records);
+                return;
+            });
+        });
+    });
+};
+
 /*retrieve all breed with contains the name */
 breed.getByName = function(name, callback){
     mongoDbConnection(function(databaseConnection) {
