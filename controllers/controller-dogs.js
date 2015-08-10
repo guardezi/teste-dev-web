@@ -5,8 +5,6 @@
 var mongoDbConnection = require('./connection');
 
 
-var fs = require('fs');
-
 
 var dogs = new Object();
 
@@ -37,9 +35,9 @@ dogs.getByBreed = function(name, callback){
     });
 };
 
+
+
 dogs.save = function(dog,callback){
-    var imgPath = '../public/images/dog.jpg';
-    dog.img = fs.readFileSync(imgPath);
     mongoDbConnection(function(databaseConnection) {
         databaseConnection.collection('dog', function (error, collection) {
             collection.insert(dog);
