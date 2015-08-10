@@ -3,6 +3,7 @@
  */
 
 var mongoDbConnection = require('./connection');
+var ObjectId = require('mongodb').ObjectID;
 
 
 
@@ -35,6 +36,19 @@ dogs.getByBreed = function(name, callback){
     });
 };
 
+/* retrieve do by id */
+dogs.getById = function(id, callback){
+    mongoDbConnection(function(databaseConnection) {
+        databaseConnection.collection('dog', function(error, collection) {
+            o_id = new ObjectId(id);
+            collection.find({"_id":o_id}).toArray(function(error, results) {
+                if (error) throw new Error(error);
+                callback(results);
+                return;
+            });
+        });
+    });
+};
 
 
 dogs.save = function(dog,callback){

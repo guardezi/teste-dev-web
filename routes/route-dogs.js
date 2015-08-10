@@ -33,6 +33,16 @@ router.get( '/:name?' , function(req,res,next){
     });
 });
 
+router.get( '/id/:id?' , function(req,res,next){
+    var id = req.params.id;
+    dogController.getById(id,function(data,err){
+        if(err){
+            res.send('ERRO');
+        }
+        res.send(data);
+    });
+});
+
 router.post('/',function(req,res,next){
     var dog  = req.body;
     dogController.save(dog,function(data,err){
