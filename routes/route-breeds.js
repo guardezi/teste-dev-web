@@ -39,4 +39,14 @@ router.get( '/:name?' , function(req,res,next){
     });
 });
 
+router.get( '/id/:id?' , function(req,res,next){
+    var id = req.params.id;
+    breedController.getByName(id,function(data,err){
+        if(err){
+            res.send('ERRO');
+        }
+        res.send(data);
+    });
+});
+
 module.exports = router;

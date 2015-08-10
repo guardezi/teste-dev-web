@@ -2,6 +2,7 @@
  * Created by guardezi on 07/08/15.
  */
 var mongoDbConnection = require('./connection');
+var ObjectId = require('mongodb').ObjectID;
 
 
 var breed = new Object();
@@ -37,6 +38,20 @@ breed.getByName = function(name, callback){
         databaseConnection.collection('breed', function(error, collection) {
             var regex = new RegExp(["", name, ""].join(""), "i");
             collection.find({"name":regex}).toArray(function(error, results) {
+                if (error) throw new Error(error);
+                callback(results);
+                return;
+            });
+        });
+    });
+};
+
+/*retrieve all breed with contains the name */
+breed.getByName = function(id, callback){
+    mongoDbConnection(function(databaseConnection) {
+        databaseConnection.collection('breed', function(error, collection) {
+            o_id = new ObjectId(id);
+            collection.find({"_id":o_id}).toArray(function(error, results) {
                 if (error) throw new Error(error);
                 callback(results);
                 return;
