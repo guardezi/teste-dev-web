@@ -10,8 +10,6 @@ angular.module('myApp.view2', ['ngRoute'])
 }])
 
 .controller('View2Ctrl', ['$scope','$http','$routeParams',function($scope,$http,$routeParams) {
-   console.log('oooi',$routeParams.id);
-   //$scope.dog = new Object();
    var buscar_cachorros_porID = function () {
       $http.get('https://charliedogs.herokuapp.com/dogs/id/'+$routeParams.id)
       .success(function (data, status, headers, config) {
@@ -22,6 +20,6 @@ angular.module('myApp.view2', ['ngRoute'])
       });
    };
 
-    buscar_cachorros_porID();
+   buscar_cachorros_porID();
 
-}]);    
+}]);
