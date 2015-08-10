@@ -39,7 +39,13 @@ router.get( '/id/:id?' , function(req,res,next){
         if(err){
             res.send('ERRO');
         }
-        res.send(data);
+        breedController.getById(data.breed_id,function(breed,err) {
+            if (err) {
+                res.send('ERRO');
+            }
+            data.breed = breed;
+            res.send(data);
+        });
     });
 });
 

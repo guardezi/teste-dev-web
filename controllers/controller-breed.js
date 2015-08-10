@@ -47,12 +47,13 @@ breed.getByName = function(name, callback){
 };
 
 /*retrieve all breed with contains the name */
-breed.getByName = function(id, callback){
+breed.getById = function(id, callback){
     mongoDbConnection(function(databaseConnection) {
         databaseConnection.collection('breed', function(error, collection) {
             o_id = new ObjectId(id);
-            collection.find({"_id":o_id}).toArray(function(error, results) {
+            collection.findOne({"_id":o_id}, function(error, results) {
                 if (error) throw new Error(error);
+
                 callback(results);
                 return;
             });

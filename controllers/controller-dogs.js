@@ -26,8 +26,9 @@ dogs.getAll = function (callback) {
 dogs.getByBreed = function(name, callback){
     mongoDbConnection(function(databaseConnection) {
         databaseConnection.collection('dog', function(error, collection) {
-            var regex = new RegExp(["^", name[0]._id, "$"].join(""), "i");
-            collection.find({"breed_id":regex}).toArray(function(error, results) {
+            //var regex = new RegExp(["^", name[0]._id, "$"].join(""), "i");
+            //o_id = new ObjectId(id);
+            collection.find({"breed_id":id}).toArray(function(error, results) {
                 if (error) throw new Error(error);
                 callback(results);
                 return;
@@ -41,7 +42,7 @@ dogs.getById = function(id, callback){
     mongoDbConnection(function(databaseConnection) {
         databaseConnection.collection('dog', function(error, collection) {
             o_id = new ObjectId(id);
-            collection.find({"_id":o_id}).toArray(function(error, results) {
+            collection.findOne({"_id":o_id},function(error, results) {
                 if (error) throw new Error(error);
                 callback(results);
                 return;
