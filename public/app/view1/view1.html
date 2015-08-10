@@ -1,0 +1,18 @@
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <a class="fancybox" href="#/view2/{{dog._id}}" ng-repeat="dog in dogs" >
+                <div class="col-md-3" >
+                    <div class="box-cachorro" style="height: 250px; width: 250px">
+                        <img src={{dog.img}} >
+                        <div class="btn-foto">Leva eu!</div>
+                        <div>
+                            <span class="titulo-cachorro">{{dog.name}}</span>
+                            <span class="detalhes-cachorro"><strong>R${{dog.value}}</strong><br>{{dog.age}}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
