@@ -72,5 +72,15 @@ router.get('/value/:min/:max', function(req,res,next){
         res.send(data);
     });
 });
+
+router.post('/',function(req,res,next){
+    var dog  = req.body;
+    dogController.save(dog,function(data,err){
+    	if(err){
+            res.send('erro');
+        }
+        res.send(data);
+    });
+});
 module.exports = router;
 
