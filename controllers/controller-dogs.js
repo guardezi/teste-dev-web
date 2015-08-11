@@ -50,6 +50,30 @@ dogs.getByPorte = function(porte, callback){
     });
 };
 
+dogs.getByPorte = function(porte, callback){
+    mongoDbConnection(function(databaseConnection) {
+        databaseConnection.collection('dog', function(error, collection) {
+            collection.find({"porte":porte}).toArray(function(error, results) {
+                if (error) throw new Error(error);
+                callback(results);
+                return;
+            });
+        });
+    });
+};
+
+dogs.getByValue = function(min, max, callback){
+    mongoDbConnection(function(databaseConnection) {
+        databaseConnection.collection('dog', function(error, collection) {
+            collection.find({value: { $gt : min, $lt : max } }).toArray(function(error, results) {
+                if (error) throw new Error(error);
+                callback(results);
+                return;
+            });
+        });
+    });
+};
+
 /* retrieve do by id */
 dogs.getById = function(id, callback){
     mongoDbConnection(function(databaseConnection) {

@@ -2,6 +2,8 @@
 <div class="content">
     <div class="container">
         <div class="row">
+            <h1 ng-if="dogs.length==0">Desculpe, nada encontrado</h1>
+
             <a class="fancybox" href="#/dog/{{dog._id}}" ng-repeat="dog in dogs" >
                 <div class="col-md-3" >
                     <div class="box-cachorro" style="height: 250px; width: 250px">

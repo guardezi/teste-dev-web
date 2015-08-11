@@ -45,7 +45,7 @@ angular.module('myApp.view1', ['ngRoute'])
 .controller('valorCtrl', ['$scope','$http','$routeParams',function($scope,$http,$routeParams) {
 
     var buscar_cachorros = function () {
-        $http.get('https://charliedogs.herokuapp.com/dogs/')
+        $http.get('https://charliedogs.herokuapp.com/dogs/value/'+$routeParams.min+'/'+$routeParams.max)
             .success(function (data, status, headers, config) {
                 $scope.dogs = angular.fromJson(data);
             }).error(function (data, status, headers, config) {

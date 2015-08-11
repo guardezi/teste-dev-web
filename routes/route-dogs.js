@@ -49,7 +49,7 @@ router.get( '/id/:id?' , function(req,res,next){
     });
 });
 
-router.get( '/porte/:porte?' , function(req,res,next){
+router.get('/porte/:porte?' , function(req,res,next){
     var porte = req.params.porte;
     dogController.getByPorte(porte,function(data,err){
         if(err){
@@ -59,5 +59,18 @@ router.get( '/porte/:porte?' , function(req,res,next){
     });
 });
 
+router.get('/value/:min/:max', function(req,res,next){
+    var min = parseFloat(req.params.min);
+    var max = parseFloat('999999999999');
+    if(req.params.max != '+'){
+        var max = parseFloat(req.params.max);
+    }
+    dogController.getByValue(min,max,function(data,err){
+        if(err){
+            res.send('ERRO');
+        }
+        res.send(data);
+    });
+});
 module.exports = router;
 
