@@ -49,11 +49,11 @@ router.get( '/id/:id?' , function(req,res,next){
     });
 });
 
-router.post('/',function(req,res,next){
-    var dog  = req.body;
-    dogController.save(dog,function(data,err){
+router.get( '/porte/:porte?' , function(req,res,next){
+    var porte = req.params.porte;
+    dogController.getByPorte(porte,function(data,err){
         if(err){
-            res.send('erro');
+            res.send('ERRO');
         }
         res.send(data);
     });
