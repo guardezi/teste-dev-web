@@ -14,8 +14,8 @@ var dogs  = require('./routes/route-dogs');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('admin', path.join(__dirname, 'admin'));
+//app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -23,9 +23,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public/app')));
 
-app.use('/', routes);
+//app.use(express.static(path.join(__dirname, 'admin')));
+
+app.use('/', express.static(path.join(__dirname, 'public/app')));
+app.use('/admin', express.static(path.join(__dirname, 'public/admin')));
 app.use('/users', users);
 app.use('/breeds/', breeds);
 app.use('/dogs/',dogs);
