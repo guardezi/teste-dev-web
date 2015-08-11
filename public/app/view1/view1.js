@@ -32,8 +32,7 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 .controller('porteCtrl', ['$scope','$http','$routeParams',function($scope,$http,$routeParams) {
     var buscar_cachorros = function () {
-        //$http.get('https://charliedogs.herokuapp.com/dogs/porte/'+$routeParams.porte)
-        $http.get('http://127.0.0.1:5000/dogs/porte/'+$routeParams.porte)
+        $http.get('https://charliedogs.herokuapp.com/dogs/porte/'+$routeParams.porte)
             .success(function (data, status, headers, config) {
                 $scope.dogs = angular.fromJson(data);
             }).error(function (data, status, headers, config) {
